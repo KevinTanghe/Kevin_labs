@@ -1,0 +1,11 @@
+@extends('templates/main')
+@section('content')
+    @include('partials/welcome/intro')
+    @include('partials/welcome/about')
+    @include('partials/welcome/testimonial')
+    @include('partials/welcome/serviceHome')
+    @include('partials/welcome/team')
+    @include('partials/mail/newsletter')
+    @include('partials/mail/contact')
+    @include('partials/footer')
+@endsection
