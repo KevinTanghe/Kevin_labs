@@ -64,19 +64,25 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
+    
+
     protected function create(array $data)
     {
+
+        // pour mettre une image sur le register user via une variable.
+
+        $storage = Storage::disk('public')->put('avatar', $data['photo']);
+
         return User::create([
             'lastname' => $data['lastname'],
             'firstname' => $data['firstname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            Storage::put("storage", $data['photo']),
-            'photo' => $data['photo']->hashName(),
+            'photo' => $storage,
             'fonction_id' => $data['fonction_id'],
-            'role_id' => $data['role_id'],
+            'role_id' => 1,
             'description' => $data['description'],
-            'check' => $data['check'],
+            'check' => 0,
         ]);
     }
 }

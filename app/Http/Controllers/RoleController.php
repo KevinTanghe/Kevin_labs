@@ -2,17 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AboutContent;
-use App\Models\Carousel;
-use App\Models\Logo;
-use App\Models\Service;
-use App\Models\Testi;
-use App\Models\Title;
-use App\Models\Video;
+use App\Models\Role;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 
-class WelcomeController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,19 +14,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $logo = Logo::all();
-        $carousel = Carousel::all();
-        $service = Service::all();
-        $service = $service->shuffle();
-        $serviceHome = $service->take(9);
-        $serviceIntro = $service->take(3);
-        $title = Title::all();
-        $aboutContent = AboutContent::all();
-        $video = Video::all();
-        $testi = Testi::all();
-
-
-        return view('pages/welcome', compact('logo', 'carousel', 'service', 'title', 'aboutContent', 'video', 'testi', 'serviceHome' , 'serviceIntro'));
+        //
     }
 
     /**
@@ -60,10 +41,10 @@ class WelcomeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Welcome  $welcome
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
         //
     }
@@ -71,10 +52,10 @@ class WelcomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Welcome  $welcome
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
         //
     }
@@ -83,10 +64,10 @@ class WelcomeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Welcome  $welcome
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
         //
     }
@@ -94,10 +75,10 @@ class WelcomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Welcome  $welcome
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
         //
     }

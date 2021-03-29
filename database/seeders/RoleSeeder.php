@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class FonctionSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,21 +14,18 @@ class FonctionSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('fonctions')->insert([
+        DB::table('roles')->insert([
             [
-                'fonction' => 'Ceo'
+                'role' => 'Membre'
             ],
             [
-                'fonction' => 'Manager'
+                'role' => 'Redacteur'
             ],
             [
-                'fonction' => 'Seller'
+                'role' => 'Webmasteur'
             ],
             [
-                'fonction' => 'DRH'
-            ],
-            [
-                'fonction' => 'Comptable'
+                'role' => 'Admin'
             ],
         ]);
     }

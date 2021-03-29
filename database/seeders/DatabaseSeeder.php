@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             AboutContentSeeder::class,
             VideoSeeder::class,
             TestiSeeder::class,
+            FonctionSeeder::class,
+            RoleSeeder::class,
 
         ]);
     }
