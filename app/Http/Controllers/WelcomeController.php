@@ -10,6 +10,7 @@ use App\Models\Testi;
 use App\Models\Title;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 class WelcomeController extends Controller
 {
@@ -22,16 +23,18 @@ class WelcomeController extends Controller
     {
         $logo = Logo::all();
         $carousel = Carousel::all();
-        $service = Service::take(9)->get();
-        $serviceHome = Service::all();
+        // $service = Service::take(9)->get();
+        $service = Service::all();
+        $service = $service->shuffle();
+        $serviceHome = $service->take(9);
+        $serviceIntro = $service->take(3);
         $title = Title::all();
         $aboutContent = AboutContent::all();
         $video = Video::all();
         $testi = Testi::all();
 
-        $i = 0;
 
-        return view('pages/welcome', compact('logo', 'carousel', 'service', 'title', 'aboutContent', 'video', 'testi', 'i'));
+        return view('pages/welcome', compact('logo', 'carousel', 'service', 'title', 'aboutContent', 'video', 'testi', 'serviceHome' , 'serviceIntro'));
     }
 
     /**

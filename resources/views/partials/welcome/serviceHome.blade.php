@@ -5,7 +5,7 @@
             <h2>{{$title[2]->title}}</h2>
         </div>
         <div class="row">
-            @foreach ($service->shuffle() as $item)
+            @foreach ($serviceHome as $item)
                 <div class="col-md-4 col-sm-6">
                     <div class="service">
                         <div class="icon">

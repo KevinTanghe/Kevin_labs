@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Logo;
-use App\Models\Service;
-use App\Models\Title;
+use App\Models\Fonction;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 
-class ServiceController extends Controller
+class FonctionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +14,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $logo = Logo::all();
-        $service = Service::paginate(6);
-        $title = Title::all();
-
-
-        return view('pages/service', compact('logo', 'service', 'title'));
+        //
     }
 
     /**
@@ -49,10 +41,10 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Service  $service
+     * @param  \App\Models\Fonction  $fonction
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show(Fonction $fonction)
     {
         //
     }
@@ -60,10 +52,10 @@ class ServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Service  $service
+     * @param  \App\Models\Fonction  $fonction
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit(Fonction $fonction)
     {
         //
     }
@@ -72,10 +64,10 @@ class ServiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Service  $service
+     * @param  \App\Models\Fonction  $fonction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, Fonction $fonction)
     {
         //
     }
@@ -83,10 +75,10 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Service  $service
+     * @param  \App\Models\Fonction  $fonction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy(Fonction $fonction)
     {
         //
     }

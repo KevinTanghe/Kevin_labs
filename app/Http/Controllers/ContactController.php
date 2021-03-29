@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Logo;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -14,7 +15,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('pages/contact');
+        $logo = Logo::all();
+
+        return view('pages/contact', compact('logo'));
     }
 
     /**

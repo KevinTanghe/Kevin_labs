@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BlogPost;
+use App\Models\Logo;
 use Illuminate\Http\Request;
 
 class BlogPostController extends Controller
@@ -14,7 +14,9 @@ class BlogPostController extends Controller
      */
     public function index()
     {
-        return view("pages/blogPost");
+        $logo = Logo::all();
+
+        return view("pages/blogPost", compact('logo'));
     }
 
     /**
@@ -44,7 +46,7 @@ class BlogPostController extends Controller
      * @param  \App\Models\BlogPost  $blogPost
      * @return \Illuminate\Http\Response
      */
-    public function show(BlogPost $blogPost)
+    public function show($id)
     {
         //
     }
@@ -55,7 +57,7 @@ class BlogPostController extends Controller
      * @param  \App\Models\BlogPost  $blogPost
      * @return \Illuminate\Http\Response
      */
-    public function edit(BlogPost $blogPost)
+    public function edit($id)
     {
         //
     }
@@ -67,7 +69,7 @@ class BlogPostController extends Controller
      * @param  \App\Models\BlogPost  $blogPost
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BlogPost $blogPost)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,7 +80,7 @@ class BlogPostController extends Controller
      * @param  \App\Models\BlogPost  $blogPost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BlogPost $blogPost)
+    public function destroy($id)
     {
         //
     }

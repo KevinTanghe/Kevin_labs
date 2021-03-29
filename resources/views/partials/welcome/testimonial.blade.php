@@ -9,7 +9,7 @@
                 </div>
                 <div class="owl-carousel" id="testimonial-slide">
                     <!-- single testimonial -->
-                    @foreach ($testi as $item)
+                    @foreach ($testi->shuffle() as $item)
                         <div class="testimonial">
                             <span>‘​‌‘​‌</span>
                             <p>{{ $item->content }}</p>
