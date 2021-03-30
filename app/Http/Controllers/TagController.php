@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
-use App\Models\Footer;
-use App\Models\Logo;
-use App\Models\Map;
-use App\Models\Subject;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,13 +14,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $logo = Logo::all();
-        $contact = Contact::all();
-        $subject = Subject::all();
-        $footer = Footer::all();
-        $map = Map::all();
-
-        return view('pages/contact', compact('logo', 'contact', 'subject', 'footer', 'map'));
+        //
     }
 
     /**
@@ -51,10 +41,10 @@ class ContactController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Contact  $contact
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact $contact)
+    public function show(Tag $tag)
     {
         //
     }
@@ -62,10 +52,10 @@ class ContactController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Contact  $contact
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contact $contact)
+    public function edit(Tag $tag)
     {
         //
     }
@@ -74,10 +64,10 @@ class ContactController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contact  $contact
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(Request $request, Tag $tag)
     {
         //
     }
@@ -85,10 +75,10 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Contact  $contact
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact $contact)
+    public function destroy(Tag $tag)
     {
         //
     }

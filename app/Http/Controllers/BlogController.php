@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Categorie;
+use App\Models\Footer;
 use App\Models\Logo;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -15,8 +19,14 @@ class BlogController extends Controller
     public function index()
     {
         $logo = Logo::all();
+        $footer = Footer::all();
+        $categorie = Categorie::all();
+        $article = Article::all();
+        $tag = Tag::all();
+        
 
-        return view('pages/blog', compact('logo'));
+
+        return view('pages/blog', compact('logo', 'footer', 'categorie', 'article', 'tag'));
     }
 
     /**

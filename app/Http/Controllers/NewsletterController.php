@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
-use App\Models\Footer;
-use App\Models\Logo;
-use App\Models\Map;
-use App\Models\Subject;
+use App\Mail\NewsletterSender;
+use App\Models\Newsletter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
-class ContactController extends Controller
+class NewsletterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,13 +16,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $logo = Logo::all();
-        $contact = Contact::all();
-        $subject = Subject::all();
-        $footer = Footer::all();
-        $map = Map::all();
-
-        return view('pages/contact', compact('logo', 'contact', 'subject', 'footer', 'map'));
+        //
     }
 
     /**
@@ -45,16 +37,21 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Mail::to($request->mail)->send(new NewsletterSender($request));
+
+        $store = new Newsletter;
+        $store->mail = $request->mail;
+        $store->save();
+        return redirect()->back()->with('status', 'Votre email à bien été reçu');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Contact  $contact
+     * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact $contact)
+    public function show(Newsletter $newsletter)
     {
         //
     }
@@ -62,10 +59,10 @@ class ContactController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Contact  $contact
+     * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contact $contact)
+    public function edit(Newsletter $newsletter)
     {
         //
     }
@@ -74,10 +71,10 @@ class ContactController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contact  $contact
+     * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(Request $request, Newsletter $newsletter)
     {
         //
     }
@@ -85,10 +82,10 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Contact  $contact
+     * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact $contact)
+    public function destroy(Newsletter $newsletter)
     {
         //
     }

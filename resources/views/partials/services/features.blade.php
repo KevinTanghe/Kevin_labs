@@ -8,35 +8,17 @@
         <div class="row">
             <!-- feature item -->
             <div class="col-md-4 col-sm-4 features">
-                <div class="icon-box light left">
-                    <div class="service-text">
-                        <h2>Get in the lab</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
+                @foreach ($serviceLeft as $item)
+                    <div class="icon-box light left">
+                        <div class="service-text">
+                            <h2>{{$item->title}}</h2>
+                            <p>{{$item->content}}</p>
+                        </div>
+                        <div class="icon">
+                            <i class="{{$item->icon}}"></i>
+                        </div>
                     </div>
-                    <div class="icon">
-                        <i class="flaticon-002-caliper"></i>
-                    </div>
-                </div>
-                <!-- feature item -->
-                <div class="icon-box light left">
-                    <div class="service-text">
-                        <h2>Projects online</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-                    </div>
-                    <div class="icon">
-                        <i class="flaticon-019-coffee-cup"></i>
-                    </div>
-                </div>
-                <!-- feature item -->
-                <div class="icon-box light left">
-                    <div class="service-text">
-                        <h2>SMART MARKETING</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-                    </div>
-                    <div class="icon">
-                        <i class="flaticon-020-creativity"></i>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <!-- Devices -->
             <div class="col-md-4 col-sm-4 devices">
@@ -46,39 +28,22 @@
             </div>
             <!-- feature item -->
             <div class="col-md-4 col-sm-4 features">
-                <div class="icon-box light">
-                    <div class="icon">
-                        <i class="flaticon-037-idea"></i>
+                @foreach ($serviceRight as $item)
+                    <div class="icon-box light">
+                        <div class="icon">
+                            <i class="{{$item->icon}}"></i>
+                        </div>
+                        <div class="service-text">
+                            <h2>{{$item->title}}</h2>
+                            <p>{{$item->content}}</p>
+                        </div>
                     </div>
-                    <div class="service-text">
-                        <h2>Get in the lab</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-                    </div>
-                </div>
+                @endforeach
                 <!-- feature item -->
-                <div class="icon-box light">
-                    <div class="icon">
-                        <i class="flaticon-025-imagination"></i>
-                    </div>
-                    <div class="service-text">
-                        <h2>Projects online</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-                    </div>
-                </div>
-                <!-- feature item -->
-                <div class="icon-box light">
-                    <div class="icon">
-                        <i class="flaticon-008-team"></i>
-                    </div>
-                    <div class="service-text">
-                        <h2>SMART MARKETING</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="text-center mt100">
-            <a href="" class="site-btn">Browse</a>
+            <a href="#sectionBlog" class="site-btn">Browse</a>
         </div>
     </div>
 </div>

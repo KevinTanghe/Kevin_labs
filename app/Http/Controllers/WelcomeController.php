@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\AboutContent;
 use App\Models\Carousel;
+use App\Models\Contact;
+use App\Models\Footer;
 use App\Models\Logo;
 use App\Models\Service;
+use App\Models\Subject;
 use App\Models\Testi;
 use App\Models\Title;
 use App\Models\Video;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 
 class WelcomeController extends Controller
 {
@@ -31,9 +33,12 @@ class WelcomeController extends Controller
         $aboutContent = AboutContent::all();
         $video = Video::all();
         $testi = Testi::all();
+        $subject = Subject::all();
+        $contact = Contact::all();
+        $footer = Footer::all();
 
 
-        return view('pages/welcome', compact('logo', 'carousel', 'service', 'title', 'aboutContent', 'video', 'testi', 'serviceHome' , 'serviceIntro'));
+        return view('pages/welcome', compact('logo', 'carousel', 'service', 'title', 'aboutContent', 'video', 'testi', 'serviceHome' , 'serviceIntro', 'subject', 'contact', 'footer'));
     }
 
     /**

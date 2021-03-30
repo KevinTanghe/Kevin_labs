@@ -10002,3 +10002,12 @@ h3 {
     border-color: #dee2e6;
   }
 }
+
+.containerBack{
+  width: 70%;
+  margin: 0 auto;
+}
+
+.aNav{
+  font-size: 20px;
+}

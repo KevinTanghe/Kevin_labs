@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EmailController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
@@ -29,11 +32,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // service
 Route::resource('service', ServiceController::class);
 
-//blog
+// blog
 Route::resource('blog', BlogController::class);
 
-//blogPost
+// blogPost
 Route::resource('blogPost', BlogPostController::class);
 
-//contact
+// contact
 Route::resource('contact', ContactController::class);
+
+// newsletter
+Route::resource('newsletter', NewsletterController::class);
+
+// Email
+Route::resource('email', EmailController::class);
+
+// article 
+Route::resource('article', ArticleController::class);

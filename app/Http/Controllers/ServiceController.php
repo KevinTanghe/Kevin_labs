@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
+use App\Models\Footer;
 use App\Models\Logo;
 use App\Models\Service;
+use App\Models\Subject;
 use App\Models\Title;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\DB;
 
 class ServiceController extends Controller
 {
@@ -18,11 +22,16 @@ class ServiceController extends Controller
     public function index()
     {
         $logo = Logo::all();
-        $service = Service::paginate(6);
+        $service = Service::paginate(9);
+        $last = Service::all()->last()->id;
+        $serviceLeft = Service::whereBetween('id', [($last-2), $last ])->get();
+        $serviceRight = Service::whereBetween('id', [($last-5), ($last-3)])->get();
         $title = Title::all();
+        $contact = Contact::all();
+        $subject = Subject::all();
+        $footer = Footer::all();
 
-
-        return view('pages/service', compact('logo', 'service', 'title'));
+        return view('pages/service', compact('logo', 'service', 'title', 'contact', 'subject', 'footer', 'serviceLeft', 'serviceRight'));
     }
 
     /**

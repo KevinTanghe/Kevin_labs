@@ -766,6 +766,20 @@ ul {
 	z-index: -1;
 }
 
+.form-class select {
+	width: 100%;
+	margin-bottom: 26px;
+	border: none;
+	background: #f6edfb;
+	padding: 17px 20px;
+}
+
+.form-class select:focus,
+.form-class select:hover {
+	outline: none;
+}
+
+
 .form-class input[type="text"] {
 	width: 100%;
 	margin-bottom: 26px;
@@ -1094,7 +1108,7 @@ ul {
 	margin-left: 10px;
 }
 
-.post-meta a:after {
+.blogA::after{
 	position: absolute;
 	content: "";
 	width: 7px;
@@ -1104,6 +1118,17 @@ ul {
 	background: #2be6ab;
 	border-radius: 10px;
 }
+
+/* .post-meta a:after {
+	position: absolute;
+	content: "";
+	width: 7px;
+	height: 7px;
+	left: 0;
+	top: 3px;
+	background: #2be6ab;
+	border-radius: 10px;
+} */
 
 .post-meta a:first-child {
 	margin-left: 0;

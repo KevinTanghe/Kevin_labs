@@ -1,4 +1,5 @@
 <!-- services card section-->
+<div id="sectionBlog"></div>
 <div class="services-card-section spad">
     <div class="container">
         <div class="row">

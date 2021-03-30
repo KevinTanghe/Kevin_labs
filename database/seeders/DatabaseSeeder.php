@@ -23,6 +23,14 @@ class DatabaseSeeder extends Seeder
             TestiSeeder::class,
             FonctionSeeder::class,
             RoleSeeder::class,
+            SubjectSeeder::class,
+            MailProSeeder::class,
+            ContactSeeder::class,
+            FooterSeeder::class,
+            MapSeeder::class,
+            CategorieSeeder::class,
+            ArticleSeeder::class,
+            TagSeeder::class,
 
         ]);
     }
