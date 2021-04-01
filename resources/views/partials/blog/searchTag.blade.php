@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-8 col-sm-7 blog-posts">
                 <!-- Post item -->
-                @foreach ($articles as $article)
+                @foreach ($tags->articles as $article)
                 <div class="post-item">
                         <div class="post-thumbnail">
                             <img src="{{asset('storage/'.$article->img)}}" alt="">
@@ -29,7 +29,7 @@
                 @endforeach
                 <!-- Pagination -->
                 <div class="page-pagination">
-                    {{ $articles->links() }}
+                    {{-- {{ $tags->->links() }} --}}
                 </div>
             </div>
             <!-- Sidebar area -->
@@ -54,8 +54,8 @@
                 <div class="widget-item">
                     <h2 class="widget-title">Tags</h2>
                     <ul class="tag">
-                        @foreach ($tags as $tag)
-                        <li><a href="/tag/{{$tag->id}}">{{$tag->tag}}</a></li>
+                        @foreach ($test as $item)
+                            <li><a href="/tag/{{$item->id}}">{{$item->tag}}</a></li>
                         @endforeach
                     </ul>
                 </div>

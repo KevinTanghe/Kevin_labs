@@ -20,7 +20,7 @@
                             @foreach ($articles->tags as $tag)
                                 <a class="tag" href="">{{ $tag->tag }}</a>
                             @endforeach
-                            <a class="blog" href="">2 Comments</a>
+                            <a class="blog" href="">Comments</a>
                         </div>
                         <p>{{ $articles->content }}</p>
                     </div>
@@ -38,7 +38,7 @@
                     </div>
                     <!-- Post Comments -->
                     <div class="comments">
-                        <h2>Comments (2)</h2>
+                        <h2>Comments</h2>
                         <ul class="comment-list">
                             @foreach ($articles->comments as $comment)
                                 <li>
@@ -51,28 +51,6 @@
                                     </div>
                                 </li>
                             @endforeach
-                            <li>
-                                <div class="avatar">
-                                    <img src="{{ asset('img/avatar/01.jpg') }}" alt="">
-                                </div>
-                                <div class="commetn-text">
-                                    <h3>Michael Smith | 03 nov, 2017 | Reply</h3>
-                                    <p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin
-                                        ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget
-                                        tristique. </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="avatar">
-                                    <img src="{{ asset('img/avatar/02.jpg') }}" alt="">
-                                </div>
-                                <div class="commetn-text">
-                                    <h3>Michael Smith | 03 nov, 2017 | Reply</h3>
-                                    <p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin
-                                        ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget
-                                        tristique. </p>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                     <!-- Commert Form -->
@@ -106,33 +84,26 @@
             <div class="col-md-4 col-sm-5 sidebar">
                 <!-- Single widget -->
                 <div class="widget-item">
-                    <form action="#" class="search-form">
-                        <input type="text" placeholder="Search">
-                        <button class="search-btn"><i class="flaticon-026-search"></i></button>
+                    <form action="{{ route('search') }}" method="GET" class="search-form">
+                        <input type="text" name="search" required placeholder="Search">
+                        <button type="submit" class="search-btn"><i class="flaticon-026-search"></i></button>
                     </form>
                 </div>
                 <!-- Single widget -->
                 <div class="widget-item">
                     <h2 class="widget-title">Categories</h2>
                     <ul>
-                        <li><a href="#">Vestibulum maximus</a></li>
-                        <li><a href="#">Nisi eu lobortis pharetra</a></li>
-                        <li><a href="#">Orci quam accumsan </a></li>
-                        <li><a href="#">Auguen pharetra massa</a></li>
-                        <li><a href="#">Tellus ut nulla</a></li>
-                        <li><a href="#">Etiam egestas viverra </a></li>
+                        @foreach ($categorie as $item)
+                            <li><a href="/categorie/{{$item->id}}">{{ $item->categorie }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="widget-item">
                     <h2 class="widget-title">Tags</h2>
                     <ul class="tag">
-                        <li><a href="">branding</a></li>
-                        <li><a href="">identity</a></li>
-                        <li><a href="">video</a></li>
-                        <li><a href="">design</a></li>
-                        <li><a href="">inspiration</a></li>
-                        <li><a href="">web design</a></li>
-                        <li><a href="">photography</a></li>
+                        @foreach ($tags as $tag)
+                            <li><a href="">{{$tag->tag}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

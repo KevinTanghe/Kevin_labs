@@ -1791,3 +1791,7 @@ ul {
 .d-flex{
 	display: flex;
 }
+
+.p-1{
+	padding: 10px;
+}

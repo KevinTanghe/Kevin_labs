@@ -18,7 +18,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return view('backoffice/article/index');
+        $articles = Article::all();
+
+        return view('backoffice/article/index', compact('articles'));
     }
 
     /**
@@ -72,9 +74,11 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show($id)
     {
-        //
+        $articles = Article::find($id);
+
+        return view('backoffice/article/show', compact('articles'));
     }
 
     /**
@@ -83,9 +87,14 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit($id)
     {
-        //
+        $edit = Article::find($id);
+        $categorie = Categorie::all();
+        $tag = Tag::all();
+
+        return view('backoffice/article/edit', compact('edit', 'categorie', 'tag'));
+
     }
 
     /**
@@ -95,9 +104,31 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, $id)
     {
-        //
+        $validation = $request->validate([
+            "img" => "required",
+            "title" => "required",
+            "categorie_id" => "required",
+            "content" => "required",
+        ]);
+
+        $update = Article::find($id);
+        $update->jour = date('d');
+        $update->mois = date('Y-m');
+        Storage::delete("public/".$update->img);
+        Storage::put('public', $request->file('img'));
+        $update->img = $request->file('img')->hashName();
+        $update->title = $request->title;
+        $update->content = $request->content;
+        $update->categorie_id = $request->categorie_id;
+        $update->user_id = Auth::user()->id;
+        
+        $update->save();
+
+        $update->tags()->sync($request->tag);
+
+        return redirect()->back();
     }
 
     /**
@@ -106,8 +137,12 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
-        //
+        $destroy = Article::find($id);
+        Storage::delete("public/".$destroy->img);
+        $destroy->delete();
+        
+        return redirect('article');
     }
 }

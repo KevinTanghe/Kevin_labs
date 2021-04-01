@@ -22,7 +22,7 @@ class BlogController extends Controller
         $logo = Logo::all();
         $footer = Footer::all();
         $categorie = Categorie::all();
-        $articles = Article::all();
+        $articles = Article::paginate(3);
         $tags = Tag::all();
         
 
@@ -62,10 +62,11 @@ class BlogController extends Controller
         $logo = Logo::all();
         $footer = Footer::all();
         $articles = Article::find($id);
-        
+        $categorie = Categorie::all();
+        $tags = Tag::all();
 
 
-        return view("pages/blogPost", compact('logo', 'footer', 'articles'));
+        return view("pages/blogPost", compact('logo', 'footer', 'articles', 'categorie', 'tags'));
     }
 
     /**
