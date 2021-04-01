@@ -8,9 +8,9 @@
     <nav>
         <ul class="menu-list">
             <li class="active"><a href="/">Home</a></li>
-            <li><a href="service">Services</a></li>
-            <li><a href="blog">Blog</a></li>
-            <li><a href="contact">Contact</a></li>
+            <li><a href="/service">Services</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/contact">Contact</a></li>
         </ul>
     </nav>
 </header>

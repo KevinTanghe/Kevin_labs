@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string('mois');
             $table->string('img');
             $table->string('title');
+            $table->text('content');
             $table->unsignedBigInteger('categorie_id');
             $table->foreign('categorie_id')->references('id')->on('categories');
             $table->unsignedBigInteger('user_id');

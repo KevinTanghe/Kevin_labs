@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\ArticleTag;
 use App\Models\Categorie;
 use App\Models\Footer;
 use App\Models\Logo;
@@ -21,12 +22,12 @@ class BlogController extends Controller
         $logo = Logo::all();
         $footer = Footer::all();
         $categorie = Categorie::all();
-        $article = Article::all();
-        $tag = Tag::all();
+        $articles = Article::all();
+        $tags = Tag::all();
         
 
 
-        return view('pages/blog', compact('logo', 'footer', 'categorie', 'article', 'tag'));
+        return view('pages/blog', compact('logo', 'footer', 'categorie', 'articles', 'tags'));
     }
 
     /**
@@ -58,7 +59,13 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        //
+        $logo = Logo::all();
+        $footer = Footer::all();
+        $articles = Article::find($id);
+        
+
+
+        return view("pages/blogPost", compact('logo', 'footer', 'articles'));
     }
 
     /**

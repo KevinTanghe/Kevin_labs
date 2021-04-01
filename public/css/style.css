@@ -1100,7 +1100,15 @@ ul {
 	margin-bottom: 40px;
 }
 
-.post-meta a {
+/* .post-meta a {
+	color: #0b1033;
+	font-size: 12px;
+	padding-left: 20px;
+	position: relative;
+	margin-left: 10px;
+} */
+
+.blog{
 	color: #0b1033;
 	font-size: 12px;
 	padding-left: 20px;
@@ -1108,7 +1116,15 @@ ul {
 	margin-left: 10px;
 }
 
-.blogA::after{
+.tag{
+	color: #0b1033;
+	font-size: 12px;
+	/* padding-left: 20px; */
+	position: relative;
+	/* margin-left: 10px; */
+}
+
+.blog::after{
 	position: absolute;
 	content: "";
 	width: 7px;
@@ -1766,4 +1782,12 @@ ul {
 #logo{
 	height: 32px;
 	width: 111px;
+}
+
+#inputComment{
+	display: none;
+}
+
+.d-flex{
+	display: flex;
 }

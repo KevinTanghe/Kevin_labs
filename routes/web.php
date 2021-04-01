@@ -3,9 +3,11 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
@@ -35,9 +37,6 @@ Route::resource('service', ServiceController::class);
 // blog
 Route::resource('blog', BlogController::class);
 
-// blogPost
-Route::resource('blogPost', BlogPostController::class);
-
 // contact
 Route::resource('contact', ContactController::class);
 
@@ -49,3 +48,11 @@ Route::resource('email', EmailController::class);
 
 // article 
 Route::resource('article', ArticleController::class);
+
+// commentaire
+Route::resource('comment', CommentController::class);
+
+// search Title
+Route::get('/search/', [SearchController::class, 'search'])->name('search');
+
+// search 
