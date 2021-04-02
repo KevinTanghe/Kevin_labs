@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use App\Models\Footer;
+use App\Models\icon;
 use App\Models\Logo;
 use App\Models\Service;
 use App\Models\Subject;
@@ -41,7 +42,9 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        $icon = icon::all();
+
+        return view('backoffice/service/create', compact('icon'));
     }
 
     /**
@@ -52,7 +55,18 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        $store = new Service;
+        $store->title = $request->title;
+        $store->icon = $request->icon;
+        $store->content = $request->content;
+        $store->save();
+
+        return redirect('serviceBack')->with('status', 'Votre service à bien été enregistré');
     }
 
     /**
@@ -72,9 +86,12 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit($id)
     {
-        //
+        $edit = Service::find($id);
+        $icon = icon::all();
+
+        return view('backoffice/service/edit', compact('edit', 'icon'));
     }
 
     /**
@@ -84,9 +101,22 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, $id)
     {
-        //
+        $validation = $request->validate([
+            "title" => "required",
+            "icon" => "required",
+            "content" => "required",
+        ]);
+
+        $update = Service::find($id);
+        $update->title = $request->title;
+        $update->icon = $request->icon;
+        $update->content = $request->content;
+        $update->save();
+
+        return redirect('serviceBack')->with('status', 'Votre service à bien été modifier');
+
     }
 
     /**
@@ -95,8 +125,11 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy($id)
     {
-        //
+        $destroy = Service::find($id);
+        $destroy->delete();
+
+        return redirect('serviceBack')->with('status', 'Votre service à bien été supprimer');
     }
 }

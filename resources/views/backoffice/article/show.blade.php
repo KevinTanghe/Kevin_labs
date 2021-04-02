@@ -24,7 +24,7 @@
                 <a class="text-white aNav p-3" href="/home">Home</a>
                 <a class="text-white aNav p-3" href="/article">Article</a>
                 <a class="text-white aNav p-3" href="/article/create">Créer ton article</a>
-                <a href="/article/{{$articles->id}}/edit " class="aNav text-white p-3">Editez votre article</a>
+                <a href="/article/{{$articles->id}}/edit" class="aNav text-white p-3">Editez votre article</a>
 
                 
                 <form action="/article/{{$articles->id}}" method="POST">
@@ -48,6 +48,9 @@
                         </thead>
                         <tbody>
                             <tr>
+
+                                {{-- Dans la page show d'un article, le nombre de commentaires et commencer le backoffice --}}
+
                                 <th scope="row">{{ $articles->id }}</th>
                                 <td>{{ $articles->title }}</td>
                                 <td><img height="100px" width="200px" src="{{asset('storage/'.$articles->img)}}" alt=""></td>

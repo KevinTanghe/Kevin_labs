@@ -18,16 +18,10 @@
                     </div>
                 </div>
             @endforeach
-            <div class="text-center">
-                {{ $service->links() }}
-            </div>
         </div>
-        <div>
-            
+        <div class="text-center">
+            {{ $service->links() }}
         </div>
-        {{-- <div class="text-center">
-            <a href="" class="site-btn">Browse</a>
-        </div> --}}
     </div>
 </div>
 <!-- services section end -->

@@ -14,7 +14,9 @@ class AboutContentController extends Controller
      */
     public function index()
     {
-        //
+        $about = AboutContent::all();
+
+        return view('backoffice/aboutcontent/index', compact('about'));
     }
 
     /**
@@ -55,9 +57,11 @@ class AboutContentController extends Controller
      * @param  \App\Models\AboutContent  $aboutContent
      * @return \Illuminate\Http\Response
      */
-    public function edit(AboutContent $aboutContent)
+    public function edit($id)
     {
-        //
+        $edit = AboutContent::find($id);
+
+        return view('backoffice/aboutcontent/edit', compact('edit'));
     }
 
     /**
@@ -67,9 +71,16 @@ class AboutContentController extends Controller
      * @param  \App\Models\AboutContent  $aboutContent
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AboutContent $aboutContent)
+    public function update(Request $request, $id)
     {
-        //
+        $validation = $request->validate([
+            "content" => "required",
+        ]);
+        $update = AboutContent::find($id);
+        $update->content = $request->content;
+        $update->save();
+        
+        return redirect('aboutContent')->with('status', 'Le paragraphe à bien été enregistré');
     }
 
     /**
@@ -78,8 +89,8 @@ class AboutContentController extends Controller
      * @param  \App\Models\AboutContent  $aboutContent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AboutContent $aboutContent)
+    public function destroy($id)
     {
-        //
+
     }
 }

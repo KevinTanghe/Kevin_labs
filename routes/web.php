@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AboutContentController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
@@ -10,7 +12,11 @@ use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TestiController;
+use App\Http\Controllers\TitleController;
+use App\Http\Controllers\VideoController;
 use App\Http\Controllers\WelcomeController;
+use App\Models\Service;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -67,3 +73,24 @@ Route::resource('article', ArticleController::class);
 
 // logo
 Route::resource('logo', LogoController::class);
+
+// Carousel
+Route::resource('carousel', CarouselController::class);
+
+// pour la page service back office
+Route::get('/serviceBack', function(){
+    $service = Service::all();
+    return view('backoffice/service/index', compact('service'));
+});
+
+// titre 
+Route::resource('title', TitleController::class);
+
+// About content
+Route::resource('aboutContent', AboutContentController::class);
+
+//video
+Route::resource('video', VideoController::class);
+
+// testimonials
+Route::resource('testi', TestiController::class);

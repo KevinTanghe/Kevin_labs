@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Testi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use PHPUnit\Util\Test;
 
 class TestiController extends Controller
 {
@@ -14,7 +16,9 @@ class TestiController extends Controller
      */
     public function index()
     {
-        //
+        $testi = Testi::all();
+
+        return view('backoffice/testi/index', compact('testi'));
     }
 
     /**
@@ -24,7 +28,7 @@ class TestiController extends Controller
      */
     public function create()
     {
-        //
+        return view('backoffice/testi/create');
     }
 
     /**
@@ -35,7 +39,22 @@ class TestiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'name' => 'required',
+            'function' => 'required',
+            'content' => 'required',
+            'img' => 'required'
+        ]);
+        
+        $store = new Testi;
+        $store->name = $request->name;
+        $store->content = $request->content;
+        $store->function = $request->function;
+        Storage::put('public', $request->file('img'));
+        $store->img = $request->file('img')->hashName();
+        $store->save();
+
+        return redirect('testi')->with('status', 'Votre testiminial à bien été enregistré');
     }
 
     /**
@@ -55,9 +74,11 @@ class TestiController extends Controller
      * @param  \App\Models\Testi  $testi
      * @return \Illuminate\Http\Response
      */
-    public function edit(Testi $testi)
+    public function edit($id)
     {
-        //
+        $edit = Testi::find($id);
+        
+        return view('');
     }
 
     /**

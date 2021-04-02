@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             CategorieSeeder::class,
             ArticleSeeder::class,
             TagSeeder::class,
+            IconSeeder::class,
 
         ]);
     }

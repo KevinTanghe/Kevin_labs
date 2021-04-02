@@ -14,7 +14,9 @@ class TitleController extends Controller
      */
     public function index()
     {
-        //
+        $title = Title::all();
+
+        return view('backoffice/title/index', compact('title'));
     }
 
     /**
@@ -55,9 +57,11 @@ class TitleController extends Controller
      * @param  \App\Models\Title  $title
      * @return \Illuminate\Http\Response
      */
-    public function edit(Title $title)
+    public function edit($id)
     {
-        //
+        $edit = Title::find($id);
+
+        return view('backoffice/title/edit', compact('edit'));
     }
 
     /**
@@ -67,9 +71,17 @@ class TitleController extends Controller
      * @param  \App\Models\Title  $title
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Title $title)
+    public function update(Request $request, $id)
     {
-        //
+        $validation = $request->validate([
+            'title' => 'required',
+        ]);
+
+        $update = Title::find($id);
+        $update->title = $request->title;
+        $update->save();
+
+        return redirect('title')->with('status', 'Votre titre à bien été enregistré');
     }
 
     /**

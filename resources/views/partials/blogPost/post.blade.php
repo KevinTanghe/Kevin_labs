@@ -15,12 +15,12 @@
                     <div class="post-content">
                         <h2 class="post-title">{{ $articles->title }}</h2>
                         <div class="post-meta">
-                            <a class="blog" href="">{{ $articles->categories->categorie }}</a>
+                            <a class="blog" href="/categorie/{{$articles->categories->id}}">{{ $articles->categories->categorie }}</a>
                             <a class="blog"></a>
                             @foreach ($articles->tags as $tag)
-                                <a class="tag" href="">{{ $tag->tag }}</a>
+                                <a class="tag" href="/tag/{{$tag->id}}">{{ $tag->tag }}</a>
                             @endforeach
-                            <a class="blog" href="">Comments</a>
+                            <a class="blog" href="">{{count($articles->comments)}} Commentaires</a>
                         </div>
                         <p>{{ $articles->content }}</p>
                     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
 {
@@ -14,7 +15,9 @@ class VideoController extends Controller
      */
     public function index()
     {
-        //
+        $video = Video::all();
+
+        return view('backoffice/video/index', compact('video'));
     }
 
     /**
@@ -55,9 +58,11 @@ class VideoController extends Controller
      * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function edit(Video $video)
+    public function edit($id)
     {
-        //
+        $edit = Video::find($id);
+
+        return view('backoffice/video/edit', compact('edit'));
     }
 
     /**
@@ -67,9 +72,21 @@ class VideoController extends Controller
      * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Video $video)
+    public function update(Request $request, $id)
     {
-        //
+        $validation = $request->validate([
+            "img" => "required",
+            "url" => "required"
+        ]);
+
+        $update = Video::find($id);
+        Storage::delete("public/".$update->img);
+        Storage::put('public', $request->file('img'));
+        $update->img = $request->file('img')->hashName();
+        $update->url = $request->url;
+        $update->save();
+
+        return redirect('video')->with('status', 'Votre vidéo à bien été changer');
     }
 
     /**

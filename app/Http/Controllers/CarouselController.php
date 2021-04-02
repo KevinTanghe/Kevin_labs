@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Carousel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CarouselController extends Controller
 {
@@ -14,7 +15,9 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        //
+        $carousel = Carousel::all();
+
+        return view('backoffice/carousel/index', compact('carousel'));
     }
 
     /**
@@ -24,7 +27,7 @@ class CarouselController extends Controller
      */
     public function create()
     {
-        //
+        return view('backoffice/carousel/create');
     }
 
     /**
@@ -35,7 +38,16 @@ class CarouselController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            "img" => "required"
+        ]);
+
+        $store = new Carousel;
+        Storage::put('public', $request->file('img'));
+        $store->img = $request->file('img')->hashName();
+        $store->save();
+
+        return redirect('carousel')->with('status', 'Votre image à bien été enregistré');
     }
 
     /**
@@ -46,7 +58,7 @@ class CarouselController extends Controller
      */
     public function show(Carousel $carousel)
     {
-        //
+        
     }
 
     /**
@@ -55,9 +67,11 @@ class CarouselController extends Controller
      * @param  \App\Models\Carousel  $carousel
      * @return \Illuminate\Http\Response
      */
-    public function edit(Carousel $carousel)
+    public function edit($id)
     {
-        //
+        $edit = Carousel::find($id);
+
+        return view('backoffice/carousel/edit', compact('edit'));
     }
 
     /**
@@ -67,9 +81,16 @@ class CarouselController extends Controller
      * @param  \App\Models\Carousel  $carousel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carousel $carousel)
+    public function update(Request $request, $id)
     {
-        //
+        $update = Carousel::find($id);
+        Storage::delete("public/".$update->img);
+        Storage::put('public', $request->file('img'));
+        $update->img = $request->file('img')->hashName();
+        $update->save();
+
+        return redirect('/carousel')->with('status', 'Votre Image à bien été enregistré');
+
     }
 
     /**
@@ -78,8 +99,12 @@ class CarouselController extends Controller
      * @param  \App\Models\Carousel  $carousel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Carousel $carousel)
+    public function destroy($id)
     {
-        //
+        $destroy = Carousel::find($id);
+        Storage::delete("public/".$destroy->img);
+        $destroy->delete();
+
+        return redirect('/carousel')->with('status', 'Votre Image à bien été supprimé');
     }
 }
