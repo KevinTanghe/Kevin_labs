@@ -14,7 +14,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tag = Tag::all();
+
+        return view('backoffice/tag/index', compact('tag'));
     }
 
     /**
@@ -24,7 +26,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('backoffice/tag/create');
     }
 
     /**
@@ -35,7 +37,15 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'tag' => 'required'
+        ]);
+
+        $store = new Tag;
+        $store->tag = $request->tag;
+        $store->save();
+
+        return redirect('tagBack')->with('status', 'Votre tag à bien été créer');
     }
 
     /**
@@ -55,9 +65,11 @@ class TagController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit($id)
     {
-        //
+        $edit = Tag::find($id);
+
+        return view('backoffice/tag/edit', compact('edit'));
     }
 
     /**
@@ -67,9 +79,17 @@ class TagController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request, $id)
     {
-        //
+        $validation = $request->validate([
+            'tag' => 'required'
+        ]);
+
+        $update = Tag::find($id);
+        $update->tag = $request->tag;
+        $update->save();
+
+        return redirect('tagBack')->with('status', 'Votre tag à bien été modifier');
     }
 
     /**
@@ -78,8 +98,12 @@ class TagController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy($id)
     {
-        //
+        $destroy = Tag::find($id);
+        $destroy->delete();
+
+        return redirect('tagBack')->with('status', 'Votre tag à bien été supprimer');
+
     }
 }

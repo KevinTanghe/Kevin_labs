@@ -14,7 +14,9 @@ class FooterController extends Controller
      */
     public function index()
     {
-        //
+        $footer = Footer::all();
+
+        return view('backoffice/footer/index', compact('footer'));
     }
 
     /**
@@ -55,9 +57,11 @@ class FooterController extends Controller
      * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Footer $footer)
+    public function edit($id)
     {
-        //
+        $edit = Footer::find($id);
+
+        return view('backoffice/footer/edit', compact('edit'));
     }
 
     /**
@@ -67,9 +71,21 @@ class FooterController extends Controller
      * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Footer $footer)
+    public function update(Request $request, $id)
     {
-        //
+        $validation = $request->validate([
+            'content' => 'required',
+            'url' => 'required',
+            'name' => 'required'
+        ]);
+
+        $update = Footer::find($id);
+        $update->content = $request->content;
+        $update->url = $request->url;
+        $update->name = $request->name;
+        $update->save();
+
+        return redirect('footer')->with('status', 'Votre bas de page à bien été modifier');
     }
 
     /**

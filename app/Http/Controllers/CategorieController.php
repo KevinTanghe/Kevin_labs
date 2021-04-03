@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        //
+        $categorie = Categorie::all();
+        
+        return view('backoffice/categorie/index', compact('categorie'));
     }
 
     /**
@@ -24,7 +27,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        //
+        return view('backoffice/categorie/create');
     }
 
     /**
@@ -35,7 +38,15 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            "categorie" => "required"
+        ]);
+
+        $store = new Categorie;
+        $store->categorie = $request->categorie;
+        $store->save();
+
+        return redirect('categorieBack')->with('status', 'Votre catégorie à bien été créer');
     }
 
     /**
@@ -55,9 +66,11 @@ class CategorieController extends Controller
      * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categorie $categorie)
+    public function edit($id)
     {
-        //
+        $edit = Categorie::find($id);
+
+        return view('backoffice/categorie/edit', compact('edit'));
     }
 
     /**
@@ -67,9 +80,18 @@ class CategorieController extends Controller
      * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categorie $categorie)
+    public function update(Request $request, $id)
     {
-        //
+        $validation = $request->validate([
+            "categorie" => "required"
+        ]);
+
+        $update = Categorie::find($id);
+        $update->categorie = $request->categorie;
+        $update->save();
+
+        return redirect('categorieBack')->with('status','Votre catégorie à bien été modifier');
+        
     }
 
     /**
@@ -78,8 +100,17 @@ class CategorieController extends Controller
      * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categorie $categorie)
+    public function destroy($id)
     {
-        //
+        $destroy = Categorie::find($id);
+        $article = Article::where('categorie_id', $id)->get();
+
+        foreach ($article as $item) {
+            $item->categorie_id = 1;
+            $item->save();
+        }
+        $destroy->delete();
+        
+        return redirect('categorieBack')->with('status', 'Votre catéhorie à bien été supprimer');
     }
 }

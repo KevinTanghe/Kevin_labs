@@ -10011,3 +10011,15 @@ h3 {
 .aNav{
   font-size: 17px;
 }
+
+.bg-jaune{
+  background-color: rgb(224, 176, 72);
+}
+
+.bg-contact{
+  background-color: rgb(96, 48, 173);
+}
+
+.bg-profil{
+  background-color: rgb(224, 184, 53);
+}

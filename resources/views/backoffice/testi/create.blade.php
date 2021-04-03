@@ -48,7 +48,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Message de la personne</label>
-                            <input class="form-control" name="content" value="{{old('name')}}" type="text">
+                            <input class="form-control" name="content" value="{{old('content')}}" type="text">
                         </div>
                         <div class="form-group">
                             <label for="">Photo de la personne</label>

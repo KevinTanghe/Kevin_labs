@@ -14,7 +14,9 @@ class MailProController extends Controller
      */
     public function index()
     {
-        //
+        $mailPro = mailPro::all();
+
+        return view('backoffice/mailPro/index', compact('mailPro'));
     }
 
     /**
@@ -55,9 +57,11 @@ class MailProController extends Controller
      * @param  \App\Models\mailPro  $mailPro
      * @return \Illuminate\Http\Response
      */
-    public function edit(mailPro $mailPro)
+    public function edit($id)
     {
-        //
+        $edit = mailPro::find($id);
+
+        return view('backoffice/mailPro/edit', compact('edit'));
     }
 
     /**
@@ -67,9 +71,17 @@ class MailProController extends Controller
      * @param  \App\Models\mailPro  $mailPro
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, mailPro $mailPro)
+    public function update(Request $request, $id)
     {
-        //
+        $validation = $request->validate([
+            'mail' => 'required'
+        ]);
+
+        $update = mailPro::find($id);
+        $update->mail = $request->mail;
+        $update->save();
+
+        return redirect('mailPro')->with('status', 'Votre mail à bien été modifier');
     }
 
     /**

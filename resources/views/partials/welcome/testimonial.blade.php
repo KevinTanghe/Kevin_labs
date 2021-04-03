@@ -15,7 +15,7 @@
                             <p>{{ $item->content }}</p>
                             <div class="client-info">
                                 <div class="avatar">
-                                    <img src="{{ asset('/storage/avatar/' . $item->img) }}" alt="">
+                                    <img src="{{ asset('storage/' . $item->img) }}" alt="">
                                 </div>
                                 <div class="client-name">
                                     <h2>{{ $item->name }}</h2>

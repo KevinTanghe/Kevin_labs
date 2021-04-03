@@ -78,7 +78,7 @@ class TestiController extends Controller
     {
         $edit = Testi::find($id);
         
-        return view('');
+        return view('backoffice/testi/edit', compact('edit'));
     }
 
     /**
@@ -88,9 +88,25 @@ class TestiController extends Controller
      * @param  \App\Models\Testi  $testi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Testi $testi)
+    public function update(Request $request, $id)
     {
-        //
+        $validation = $request->validate([
+            "name" => "required",
+            "function" => "required",
+            "content" => "required",
+            "img" => "required"
+        ]);
+
+        $update = Testi::find($id);
+        $update->name = $request->name;
+        $update->function = $request->function;
+        $update->content = $request->content;
+        Storage::delete("public/".$update->img);
+        Storage::put('public', $request->file('img'));
+        $update->img = $request->file('img')->hashname();
+        $update->save();
+
+        return redirect('testi')->with('status', 'Votre testimonial à été enregistré');
     }
 
     /**
@@ -99,8 +115,12 @@ class TestiController extends Controller
      * @param  \App\Models\Testi  $testi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Testi $testi)
+    public function destroy($id)
     {
-        //
+        $destroy = Testi::find($id);
+        Storage::delete("public/".$destroy->img);
+        $destroy->delete();
+
+        return redirect('testi')->with('status', 'Votre testimonial à été supprimé');
     }
 }

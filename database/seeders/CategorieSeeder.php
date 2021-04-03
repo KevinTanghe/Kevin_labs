@@ -16,6 +16,9 @@ class CategorieSeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
+                'categorie' => 'Aucune'
+            ],
+            [
                 'categorie' => 'Création'
             ],
             [

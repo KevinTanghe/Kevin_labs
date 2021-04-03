@@ -21,18 +21,50 @@
     <div class="containerBack">
         <div class="row mt-5">
             <div class="col-4 bg-dark text-center d-flex flex-column">
-                                {{-- page welcome --}}
-                <h3 class="text-white border rounded p-2 m-1">Page Welcome</h3 class="text-white border">
+                {{-- Profil user --}}
+                <div>
+                    <h3 class="text-white border rounded p-2 m-3 bg-profil">Votre Profil</h3 class="text-white border">
+                </div>
+                <a class="text-white aNav p-3" href="/user">Profil</a>
+                {{-- info user --}}
+                <div>
+                    <h3 class="text-white border rounded p-2 m-3 bg-primary">Info de l'entreprise</h3 class="text-white border">
+                </div>
+                <a class="text-white aNav p-3" href="/mailPro">Email de l'entreprise</a>
+                <a class="text-white aNav p-3" href="/subject">Sujets pour les mails</a>
+                <a class="text-white aNav p-3" href="/footer">Le bas de page ( footer )</a>
+                <a class="text-white aNav p-3" href="/contact/create">Informations contact</a>
+                {{-- page welcome --}}
+
+                <div>
+                    <h3 class="text-white border rounded p-2 m-1 bg-danger">Page Welcome</h3 class="text-white border">
+                </div>
                 <a class="text-white aNav p-3" href="/logo">Logo du site</a>
                 <a class="text-white aNav p-3" href="/carousel">Image du carousel</a>
-                <a class="text-white aNav p-3" href="/serviceBack">Vos services</a>
                 <a class="text-white aNav p-3" href="/title">Titres du site</a>
                 <a class="text-white aNav p-3" href="/aboutContent">Contenu de la section about</a>
                 <a class="text-white aNav p-3" href="/video">Video de la page Welcome</a>
                 <a class="text-white aNav p-3" href="/testi">Testimonial</a>
-                                {{-- page service --}}
-                <h3 class="text-white border rounded p-2">Page Service</h3 class="text-white border">
+                {{-- page service --}}
+
+                <div>
+                    <h3 class="text-white border rounded p-2 bg-success">Page Service</h3 class="text-white border">
+                </div>
+                <a class="text-white aNav p-3" href="/serviceBack">Vos services</a>
+                {{-- page blog --}}
+
+                <div>
+                    <h3 class="text-white border rounded p-2 bg-jaune">Page Blog</h3 class="text-white border">
+                </div>
                 <a class="text-white aNav p-3" href="/article">Article du blog</a>
+                <a class="text-white aNav p-3" href="/tagBack">Tags des articles</a>
+                <a class="text-white aNav p-3" href="/categorieBack">Catégories des articles</a>
+                {{-- page Contact --}}
+
+                <div>
+                    <h3 class="text-white border rounded p-2 bg-contact">Page Contact</h3 class="text-white border">
+                </div>
+                <a class="text-white aNav p-3" href="/map">Map Google</a>
             </div>
             <div class="col-8 bg-secondary">
                 <h1 class="text-center text-white p-4">Bienvenue dans votre panel admin</h1>
