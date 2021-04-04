@@ -40,11 +40,9 @@
                                 <tr>
                                     <th scope="row">{{$article->id}}</th>
                                     <td>{{$article->title}}</td>
-                                    <td><a href="/article/{{$article->id}}" class="btn btn-primary">Show</a></td>
-                                    {{-- @foreach ($article->tags as $tag)
-                                        <td>{{$tag->tag}}</td>
-                                    @endforeach --}}
-                                </tr>    
+                                    @can('redacteur', $article)
+                                        <td><a href="/article/{{$article->id}}" class="btn btn-primary">Show</a></td>
+                                    @endcan
                             @endforeach
                         </tbody>
                     </table>

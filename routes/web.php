@@ -12,7 +12,9 @@ use App\Http\Controllers\FooterController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\MailProController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SubjectController;
@@ -88,7 +90,7 @@ Route::resource('carousel', CarouselController::class);
 Route::get('/serviceBack', function(){
     $service = Service::all();
     return view('backoffice/service/index', compact('service'));
-});
+})->middleware(['auth', 'admin']);
 
 // titre 
 Route::resource('title', TitleController::class);
@@ -122,3 +124,9 @@ Route::resource('tagBack', TagController::class);
 
 // user 
 Route::resource('user', UserController::class);
+
+// member 
+Route::resource('member', MemberController::class);
+
+// role
+Route::resource('role', RoleController::class);

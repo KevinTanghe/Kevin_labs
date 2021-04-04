@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fonction;
+use App\Models\Article;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class UserController extends Controller
+class MemberController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('check')->only('update');
+        $this->middleware('admin')->except('index');
     }
     /**
      * Display a listing of the resource.
@@ -22,9 +21,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        $user = User::all();
 
-        return view('backoffice/user/index', compact('user'));  
+        return view('backoffice/member/index', compact('user'));
     }
 
     /**
@@ -67,10 +66,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $edit = User::find($id);
-        $fonction = Fonction::all();
-
-        return view('backoffice/user/edit', compact('edit', 'fonction'));
+        //
     }
 
     /**
@@ -81,34 +77,13 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
-        
-        $validation = $request->validate([
-            'lastname' => 'required',
-            'firstname' => 'required',
-            'email' => 'required',
-            'fonction_id' => 'required',
-            'description' => 'required',
-            ]);
-
+    {
         $update = User::find($id);
-        $update->lastname = $request->lastname;
-        $update->firstname = $request->firstname;
-        $update->email = $request->email;
-        if ($request->file('photo')) {
-            Storage::delete('public/'.$update->photo);
-            Storage::put('public', $request->file('photo'));
-            $update->photo = $request->file('photo')->hashName();
-        }
-        $update->fonction_id = $request->fonction_id;
-        $update->description = $request->description;
-        $update->role_id = Auth::user()->role_id;
-        $update->check = Auth::user()->check;
 
-
+        $update->check = 1;
         $update->save();
 
-        return redirect('user')->with('status','Votre profil à bien été modifier');
+        return redirect()->back()->with('status', 'Ce membre à bien été valider');
     }
 
     /**
@@ -119,6 +94,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $destroy = User::find($id);
+        Storage::delete("public/".$destroy->img);
+        $articles = Article::where("user_id", $id)->get();
+
+        foreach ($articles as $article) {
+            $article->delete();
+        }
+        $destroy->delete();
+
+        return redirect()->back()->with('status', 'Le membre à été supprimer');
     }
 }

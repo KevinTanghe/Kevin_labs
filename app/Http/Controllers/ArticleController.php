@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('redacteur');
+    }
     /**
      * Display a listing of the resource.
      *

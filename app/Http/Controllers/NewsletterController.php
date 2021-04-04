@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Mail;
 
 class NewsletterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('store');
+        $this->middleware('admin')->except('store');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +21,9 @@ class NewsletterController extends Controller
      */
     public function index()
     {
-        //
+        $newsletter = Newsletter::all();
+
+        return view('backoffice/newsletter/index', compact('newsletter'));
     }
 
     /**

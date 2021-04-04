@@ -10023,3 +10023,9 @@ h3 {
 .bg-profil{
   background-color: rgb(224, 184, 53);
 }
+
+.photo-profil{
+  height: 150px;
+  width: 150px;
+  border-radius: 30px;
+}

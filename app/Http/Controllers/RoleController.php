@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::all();
+        
+        return view('backoffice/role/index', compact('user'));
     }
 
     /**
@@ -55,9 +63,12 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
-        //
+        $edit = User::find($id);
+        $role = Role::all();
+
+        return view('backoffice/role/edit', compact('edit', 'role'));
     }
 
     /**
@@ -67,9 +78,14 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
-        //
+        $update = User::find($id);
+
+        $update->role_id = $request->role_id;
+        $update->save();
+
+        return redirect('role')->with('status', 'Le role à bien été modifier');
     }
 
     /**
