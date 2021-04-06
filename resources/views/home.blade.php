@@ -1,43 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
-
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                        @if (session('stop'))
-                            <div class="alert alert-danger" role="alert">
-                                {{ session('stop') }}
-                            </div>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="containerBack">
-        <div class="row mt-5">
-            <div class="col-4 bg-dark text-center d-flex flex-column">
+    <div>
+        <div class="row">
+            <div class="col-3 bg-dark text-center d-flex flex-column">
                 {{-- Profil user --}}
                 <div>
-                    <h3 class="text-white border rounded p-2 m-3 bg-profil">Votre Profil</h3 class="text-white border">
+                    <h3 class="text-white p-2 m-3 cateBorder">Votre Profil</h3 class="text-white border">
                 </div>
                 <a class="text-white aNav p-3" href="/user">Profil</a>
-                <a class="text-white aNav p-3" href="/member">Tous les membres</a>
                 @can('home')
+                    <a class="text-white aNav p-3" href="/member">Tous les membres</a>
                     <a class="text-white aNav p-3" href="/role">Gestions des roles</a>
                 @endcan
                 {{-- info Entreprise --}}
                 <div>
-                    <h3 class="text-white border rounded p-2 m-1 bg-primary">Info de l'entreprise</h3 class="text-white border">
+                    <h3 class="text-white p-2 m-3 cateBorder">Info de l'entreprise</h3 class="text-white border">
                 </div>
                 @can('home')
                     <a class="text-white aNav p-3" href="/newsletter">Newsletter</a>
@@ -48,7 +26,7 @@
                 @endcan
                 {{-- page welcome --}}
                 <div>
-                    <h3 class="text-white border rounded p-2 m-1 bg-danger">Page Welcome</h3 class="text-white border">
+                    <h3 class="text-white  p-2 m-3 cateBorder">Page Welcome</h3 class="text-white border">
                 </div>
                 @can('home')
                     <a class="text-white aNav p-3" href="/logo">Logo du site</a>
@@ -61,7 +39,7 @@
                 {{-- page service --}}
 
                 <div>
-                    <h3 class="text-white border rounded p-2 m-1 bg-success">Page Service</h3 class="text-white border">
+                    <h3 class="text-white  p-2 m-3 cateBorder">Page Service</h3 class="text-white border">
                 </div>
                 @can('home')
                     <a class="text-white aNav p-3" href="/serviceBack">Vos services</a>
@@ -69,7 +47,7 @@
                 {{-- page blog --}}
 
                 <div>
-                    <h3 class="text-white border rounded p-2 m-1 bg-jaune">Page Blog</h3 class="text-white border">
+                    <h3 class="text-white p-2 m-3 cateBorder">Page Blog</h3 class="text-white border">
                 </div>
                 @can('article')
                     <a class="text-white aNav p-3" href="/article">Article du blog</a>
@@ -78,15 +56,60 @@
                 @endcan
                 {{-- page Contact --}}
                 <div>
-                    <h3 class="text-white border rounded p-2 m-1 bg-contact">Page Contact</h3 class="text-white border">
+                    <h3 class="text-white cateBorder p-2 m-3">Page Contact</h3 class="text-white border">
                 </div>
                 @can('home')
                     <a class="text-white aNav p-3" href="/map">Map Google</a>
                 @endcan
             </div>
-            <div class="col-8 bg-secondary">
-                <h1 class="text-center text-white p-4">Bienvenue dans votre panel admin</h1>
+            <div class="col-9 bleu">
+                @if (Route::getCurrentRoute()->uri() == "home")
+                    <h1 class="text-center text-white p-4">Bienvenue dans votre panel admin</h1>
+                @endif
+                
+                @if (session('status'))
+                    <div class="d-flex justify-content-center">
+                        <div class="container">
+                            <div class="alert alert-success p-3">
+                                <h5>Dashboard</h5>
+                                <p class="text-success mt-3">{{ session('status') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                @if (session('stop'))
+                    <div class="d-flex justify-content-center">
+                        <div class="container">
+                            <div class="alert alert-danger p-3">
+                                <h5>Dashboard</h5>
+                                <p class="text-danger mt-3">{{ session('stop') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                @if (session('errors'))
+                    <div class="d-flex justify-content-center">
+                        <div class="container">
+                            <div class="alert alert-danger p-3">
+                                <h5>Dashboard</h5>
+                                @foreach ($errors->all() as $item)
+                                    <p class="text-danger mt-3">{{$item}}</p>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                
+
+                <div class="container">
+                    @yield('back')
+                </div>
             </div>
         </div>
     </div>
+    <footer class="noir">
+        <div class="d-flex justify-content-center">
+            <h5 class="text-white p-4"><a class="text-white" href="">Copyright © créer par Tanghe Kevin</a></h5>
+        </div>
+    </footer>
 @endsection

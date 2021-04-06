@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Contact;
 use App\Models\Footer;
 use App\Models\icon;
@@ -36,8 +37,10 @@ class ServiceController extends Controller
         $contact = Contact::all();
         $subject = Subject::all();
         $footer = Footer::all();
+        $lastArticle = Article::all()->last()->id;
+        $articles = Article::whereBetween('id', [($lastArticle-2), $lastArticle])->get();
 
-        return view('pages/service', compact('logo', 'service', 'title', 'contact', 'subject', 'footer', 'serviceLeft', 'serviceRight'));
+        return view('pages/service', compact('logo', 'service', 'title', 'contact', 'subject', 'footer', 'serviceLeft', 'serviceRight', 'articles'));
     }
 
     /**

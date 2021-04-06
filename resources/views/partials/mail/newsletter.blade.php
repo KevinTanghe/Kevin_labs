@@ -10,16 +10,18 @@
                 <form class="nl-form" action="/newsletter" method="POST">
                     @csrf
                     <input type="text" name="mail" placeholder="Your e-mail here">
-                    <button type="submit" class="site-btn btn-2">Newsletter</button>
+                    <a href="">
+                        <button type="submit" class="site-btn btn-2">Newsletter</button>
+                    </a>
                 </form>
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
                     </div>
                 @endif
-                @if (session('errors'))
+                @if (session('stopNews'))
                     <div class="alert alert-danger" role="alert">
-                        {{ session('errors') }}
+                        {{ session('stopNews') }}
                     </div>
                 @endif
             </div>

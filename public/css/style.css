@@ -1795,3 +1795,7 @@ ul {
 .p-1{
 	padding: 10px;
 }
+
+.d-none{
+	display: none;
+}

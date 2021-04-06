@@ -11,6 +11,7 @@ use App\Models\Service;
 use App\Models\Subject;
 use App\Models\Testi;
 use App\Models\Title;
+use App\Models\User;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
@@ -37,8 +38,15 @@ class WelcomeController extends Controller
         $contact = Contact::all();
         $footer = Footer::all();
 
+        $user = User::where('check', 1)->get();
+        $patron = User::first();
+        $team = $user->skip(1);
+        $team = $team->shuffle()->take(2);
 
-        return view('pages/welcome', compact('logo', 'carousel', 'service', 'title', 'aboutContent', 'video', 'testi', 'serviceHome' , 'serviceIntro', 'subject', 'contact', 'footer'));
+        
+
+
+        return view('pages/welcome', compact('logo', 'carousel', 'service', 'title', 'aboutContent', 'video', 'testi', 'serviceHome' , 'serviceIntro', 'subject', 'contact', 'footer', 'team', 'patron'));
     }
 
     /**

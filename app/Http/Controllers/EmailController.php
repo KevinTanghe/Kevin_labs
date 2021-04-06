@@ -7,6 +7,7 @@ use App\Models\Email;
 use App\Models\mailPro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class EmailController extends Controller
 {
@@ -38,6 +39,15 @@ class EmailController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'mail' => 'required',
+            'content' => 'required',
+        ]);
+
+        if ($validator->fails()){
+            return redirect()->back()->with('stopMail', 'Vous devez bien remplire votre nom, email et votre message.');
+        }
+
         $mailPro = mailPro::all();
 
         Mail::to($mailPro[0]->mail)->send(new MailSender($request));

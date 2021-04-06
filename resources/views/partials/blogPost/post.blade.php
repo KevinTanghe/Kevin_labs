@@ -15,12 +15,13 @@
                     <div class="post-content">
                         <h2 class="post-title">{{ $articles->title }}</h2>
                         <div class="post-meta">
-                            <a class="blog" href="/categorie/{{$articles->categories->id}}">{{ $articles->categories->categorie }}</a>
+                            <a class="blog"
+                                href="/categorie/{{ $articles->categories->id }}">{{ $articles->categories->categorie }}</a>
                             <a class="blog"></a>
                             @foreach ($articles->tags as $tag)
-                                <a class="tag" href="/tag/{{$tag->id}}">{{ $tag->tag }}</a>
+                                <a class="tag" href="/tag/{{ $tag->id }}">{{ $tag->tag }}</a>
                             @endforeach
-                            <a class="blog" href="">{{count($articles->comments)}} Commentaires</a>
+                            <a class="blog" href="">{{ count($articles->comments) }} Commentaires</a>
                         </div>
                         <p>{{ $articles->content }}</p>
                     </div>
@@ -31,7 +32,8 @@
                             <img src="{{ asset('storage/' . $articles->user->photo) }}" alt="">
                         </div>
                         <div class="author-info">
-                            <h2>{{ $articles->user->lastname }} {{ $articles->user->firstname }} <span>Author</span>
+                            <h2>{{ $articles->user->lastname }} {{ $articles->user->firstname }}
+                                <span>Author</span>
                             </h2>
                             <p>{{ $articles->user->description }} </p>
                         </div>
@@ -43,11 +45,11 @@
                             @foreach ($articles->comments as $comment)
                                 <li>
                                     <div class="avatar">
-                                        <img src="{{asset('storage/'.$comment->photo)}}" alt="">
+                                        <img src="{{ asset('storage/' . $comment->photo) }}" alt="">
                                     </div>
                                     <div class="commetn-text">
-                                        <h3>{{$comment->name}} | {{$comment->date}} | Reply</h3>
-                                        <p>{{$comment->content}} </p>
+                                        <h3>{{ $comment->name }} | {{ $comment->date }} | Reply</h3>
+                                        <p>{{ $comment->content }} </p>
                                     </div>
                                 </li>
                             @endforeach
@@ -59,22 +61,44 @@
                             <h2>Leave a comment</h2>
                             <form class="form-class" action="/comment" method="POST">
                                 @csrf
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <input type="text" name="name" placeholder="Your name">
+                                @if (Auth::check())
+                                    <div class="row">
+                                        <div class="col-sm-6 d-none">
+                                            <input type="text"
+                                                value="{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}"
+                                                name="name" placeholder="Your name">
+                                        </div>
+                                        <div class="col-sm-6 d-none">
+                                            <input type="text" value="{{ Auth::user()->email }}" name="mail"
+                                                placeholder="Your email">
+                                        </div>
+                                        <div>
+                                            <input id="inputComment" type="text" name="article_id"
+                                                value="{{ $articles->id }}">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <textarea name="content" placeholder="Message"></textarea>
+                                            <button class="site-btn">send</button>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" name="mail" placeholder="Your email">
+                                @else
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <input type="text" name="name" placeholder="Your name">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="mail" placeholder="Your email">
+                                        </div>
+                                        <div>
+                                            <input id="inputComment" type="text" name="article_id"
+                                                value="{{ $articles->id }}">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <textarea name="content" placeholder="Message"></textarea>
+                                            <button class="site-btn">send</button>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <input id="inputComment" type="text" name="article_id"
-                                            value="{{ $articles->id }}">
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <textarea name="content" placeholder="Message"></textarea>
-                                        <button class="site-btn">send</button>
-                                    </div>
-                                </div>
+                                @endif  
                             </form>
                         </div>
                     </div>
@@ -94,7 +118,7 @@
                     <h2 class="widget-title">Categories</h2>
                     <ul>
                         @foreach ($categorie as $item)
-                            <li><a href="/categorie/{{$item->id}}">{{ $item->categorie }}</a></li>
+                            <li><a href="/categorie/{{ $item->id }}">{{ $item->categorie }}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -102,7 +126,7 @@
                     <h2 class="widget-title">Tags</h2>
                     <ul class="tag">
                         @foreach ($tags as $tag)
-                            <li><a href="">{{$tag->tag}}</a></li>
+                            <li><a href="">{{ $tag->tag }}</a></li>
                         @endforeach
                     </ul>
                 </div>

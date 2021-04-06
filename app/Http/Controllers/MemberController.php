@@ -12,7 +12,7 @@ class MemberController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin')->except('index');
+        $this->middleware('admin');
     }
     /**
      * Display a listing of the resource.
@@ -102,6 +102,7 @@ class MemberController extends Controller
             $article->delete();
         }
         $destroy->delete();
+        
 
         return redirect()->back()->with('status', 'Le membre à été supprimer');
     }

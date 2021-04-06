@@ -6,6 +6,7 @@ use App\Mail\NewsletterSender;
 use App\Models\Newsletter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class NewsletterController extends Controller
 {
@@ -21,6 +22,8 @@ class NewsletterController extends Controller
      */
     public function index()
     {
+        
+
         $newsletter = Newsletter::all();
 
         return view('backoffice/newsletter/index', compact('newsletter'));
@@ -44,6 +47,14 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'mail' => 'required',
+        ]);
+
+        if ($validator->fails()){
+            return redirect()->back()->with('stopNews', 'Votre email dois être valide.');
+        }
+
         Mail::to($request->mail)->send(new NewsletterSender($request));
 
         $store = new Newsletter;

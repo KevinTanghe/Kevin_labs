@@ -10029,3 +10029,27 @@ h3 {
   width: 150px;
   border-radius: 30px;
 }
+
+.colorNN{
+  background-color: rgb(43, 43, 43);
+}
+
+.noir{
+  background-color: rgb(34, 33, 33);
+}
+
+.gris{
+  background-color: rgb(39, 38, 38);
+}
+
+.bleu{
+  background-color: rgb(50, 63, 83);
+}
+
+.cateBorder{
+  border-top-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: rgb(26, 36, 56);
+}
