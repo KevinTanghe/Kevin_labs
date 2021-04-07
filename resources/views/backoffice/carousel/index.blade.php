@@ -22,7 +22,7 @@
                             <tr>
                                 <th scope="row">{{ $item->id }}</th>
                                 <td>{{ $item->img }}</td>
-                                <td><img src="{{ asset('storage/' . $item->img) }}" alt=""></td>
+                                <td><img height="400px" width="400px" src="{{ asset('storage/' . $item->img) }}" alt=""></td>
                                 <td><a href="/carousel/{{ $item->id }}/edit" class="btn btn-success">Edit</a></td>
                                 <td>
                                     <form action="/carousel/{{ $item->id }}" method="POST">

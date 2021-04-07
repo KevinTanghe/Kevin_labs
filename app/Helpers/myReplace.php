@@ -9,7 +9,7 @@ class myReplace
 
     public static function back($string)
     {
-        return str_replace(array('<span>' , '</span>'),array('[', ']') ,$string);
+        return str_replace(array('<span>' , '</span>'),array('(', ')') ,$string);
     }
 
   }

@@ -129,9 +129,9 @@ class ArticleController extends Controller
         $update->categorie_id = $request->categorie_id;
         $update->user_id = Auth::user()->id;
         
-        $update->save();
-
         $update->tags()->sync($request->tag);
+        
+        $update->save();
 
         return redirect()->back();
     }

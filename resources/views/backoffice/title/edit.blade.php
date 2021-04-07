@@ -1,5 +1,6 @@
 @extends('home')
 @section('back')
+<h4 class="text-center">Mettez en valeur ce que vous voulez en l'entourant de parenthèse</h4>
     <div class="row mt-5">
         <div class="col-3 bg-dark text-center d-flex flex-column">
             <a class="text-white aNav p-3" href="/title">Mes Titres</a>

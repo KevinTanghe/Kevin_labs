@@ -3,7 +3,7 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="section-title">
-            <h2>{{$title[0]->title}}</h2>
+            <h2>{!! App\Helpers\myReplace::black($title[0]->title) !!}</h2>
         </div>
         <div class="row">
             <!-- feature item -->

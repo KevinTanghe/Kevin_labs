@@ -2,7 +2,7 @@
 <div class="services-section spad">
     <div class="container">
         <div class="section-title dark">
-            <h2>{{$title[2]->title}}</h2>
+            <h2>{!! App\Helpers\myReplace::black($title[2]->title) !!}</h2>
         </div>
         <div class="row">
             @foreach ($serviceHome as $item)

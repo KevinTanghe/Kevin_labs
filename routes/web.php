@@ -130,3 +130,8 @@ Route::resource('member', MemberController::class);
 
 // role
 Route::resource('role', RoleController::class);
+Auth::routes();
+
+Route::get('/home', function() {
+    return view('home');
+})->name('home')->middleware('auth');

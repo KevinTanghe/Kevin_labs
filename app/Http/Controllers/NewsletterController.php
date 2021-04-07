@@ -48,7 +48,7 @@ class NewsletterController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'mail' => 'required',
+            'mail' => 'email:rfc,dns',
         ]);
 
         if ($validator->fails()){
