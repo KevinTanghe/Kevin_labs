@@ -4,7 +4,7 @@
             <div class="col-md-8 col-sm-7 blog-posts">
                 <!-- Post item -->
                 @if ($articles->isEmpty())
-                    <h4>Il y a pas d'articles trouvé avec ce titre</h4>
+                    <h4 class="text-center">Il y a pas d'articles trouvé</h4>
                 @endif
                 @foreach ($articles as $article)
                 <div class="post-item">
