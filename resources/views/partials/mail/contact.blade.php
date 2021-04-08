@@ -11,13 +11,18 @@
                 <h3 class="mt60">{{ $contact[0]->streetTitle }}</h3>
                 <p class="con-item">{{ $contact[0]->street }}</p>
                 <p class="con-item">{{ $contact[0]->phone }}</p>
-                <p class="con-item">{{ $contact[0]->mail }}/p>
+                <p class="con-item">{{ $contact[0]->mail }}</p>
             </div>
             <!-- contact form -->
             <div class="col-md-6 col-pull">
                 @if (session('stopMail'))
                     <div class="alert alert-danger" role="alert">
                         {{ session('stopMail') }}
+                    </div>
+                @endif
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
                     </div>
                 @endif
                 <form action="email" method="POST" class="form-class" id="con_form">

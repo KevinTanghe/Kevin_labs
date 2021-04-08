@@ -3,6 +3,9 @@
         <div class="row">
             <div class="col-md-8 col-sm-7 blog-posts">
                 <!-- Post item -->
+                @if ($articles->isEmpty())
+                    <h4>Il y a pas d'articles trouvé avec ce titre</h4>
+                @endif
                 @foreach ($articles as $article)
                 <div class="post-item">
                         <div class="post-thumbnail">

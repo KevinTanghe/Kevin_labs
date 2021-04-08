@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\MailSender;
 use App\Models\Email;
 use App\Models\mailPro;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -48,17 +49,22 @@ class EmailController extends Controller
             return redirect()->back()->with('stopMail', 'Vous devez bien remplire votre nom, email et votre message.');
         }
 
-        $mailPro = mailPro::all();
+        $subject = Subject::all();
 
-        Mail::to($mailPro[0]->mail)->send(new MailSender($request));
-        $store = new Email;
-        $store->name = $request->name;
-        $store->mail = $request->mail;
-        $store->subject_id = $request->subject_id;
-        $store->content = $request->content;
-        $store->save();
-
-        return redirect()->back();
+        if ($subject->find($request->subject_id) != null) {
+            $mailPro = mailPro::all();
+            Mail::to($mailPro[0]->mail)->send(new MailSender($request));
+            $store = new Email;
+            $store->name = $request->name;
+            $store->mail = $request->mail;
+            $store->subject_id = $request->subject_id;
+            $store->content = $request->content;
+            $store->save();
+    
+            return redirect()->back()->with('status', 'Votre email à bien été envoyé.');
+        } else {
+            return redirect()->back()->with('stopMail', 'Vous ne pouvez pas modifier le formulaire.');
+        }
     }
 
     /**

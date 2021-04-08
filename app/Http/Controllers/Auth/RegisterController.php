@@ -71,7 +71,7 @@ class RegisterController extends Controller
 
         // pour mettre une image sur le register user via une variable.
 
-        $storage = Storage::disk('public')->put('avatar', $data['photo']);
+        $storage = Storage::disk('public')->put('', $data['photo']);
 
         return User::create([
             'lastname' => $data['lastname'],
